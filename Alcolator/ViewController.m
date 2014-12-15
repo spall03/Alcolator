@@ -8,19 +8,119 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *beerPercentTextField;
-@property (weak, nonatomic) IBOutlet UISlider *beerCountSlider;
-@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
-@property (weak, nonatomic) IBOutlet UILabel *beerNumberLabel;
+@interface ViewController () <UITextFieldDelegate>
+
+
+@property (weak, nonatomic) UIButton *calculateButton;
+@property (weak, nonatomic) UITapGestureRecognizer *hideKeyboardTapGestureRecognizer;
 
 @end
 
 @implementation ViewController
 
+-(void)loadView
+{
+    self.view = [[UIView alloc]init]; //this is the main view that everything else fits into
+    
+    UITextField *textField = [[UITextField alloc]init]; //for entering beer alc %
+    UISlider *slider = [[UISlider alloc]init]; //for controlling # of beers
+    UILabel *beers = [[UILabel alloc]init]; //for displaying # of beers
+    UILabel *label = [[UILabel alloc]init]; //for displaying result (# of wine glasses)
+    UIButton *button = [[UIButton alloc]init]; //for initiating calculation
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]init]; //for removing keyboard
+    
+    //add all of these UI elements as subviews of the main screen
+    [self.view addSubview:textField];
+    [self.view addSubview:slider];
+    [self.view addSubview:beers];
+    [self.view addSubview:label];
+    [self.view addSubview:button];
+    [self.view addGestureRecognizer:tap];
+    
+    //connect UI elements to properties so that the program can receive user input
+    self.beerPercentTextField = textField;
+    self.beerCountSlider = slider;
+    self.beerLabel = beers;
+    self.resultLabel = label;
+    self.calculateButton = button;
+    self.hideKeyboardTapGestureRecognizer = tap;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.view.backgroundColor = [UIColor darkGrayColor]; //sets background of main window to dark gray
+
+    
+    self.beerPercentTextField.delegate = self; //this instance of viewDidLoad is the text field's delegate, meaning it can respond to the text field's default behavior (text entry)
+    self.beerPercentTextField.placeholder = NSLocalizedString(@"% Alcohol Content Per Beer", @"Beer Percent Placeholder Text"); //set default text for text field
+    
+    [self.beerCountSlider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged]; //connects IBAction manually, meaning that when the slider's value is changed, sliderValueDidChange gets fired
+    self.beerCountSlider.minimumValue = 1; //sets minimum and maximum values for the slider
+    self.beerCountSlider.maximumValue = 10;
+    
+    [self.calculateButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside]; //connects button press to method
+    [self.calculateButton setTitle:NSLocalizedString(@"Calculate", @"Calculate command") forState:UIControlStateNormal]; //set button title
+    
+    [self.hideKeyboardTapGestureRecognizer addTarget:self action:@selector(tapGestureDidFire:)]; //calls tap method when tap detected
+    
+    self.beerLabel.numberOfLines = 0;
+    self.beerLabel.text = @"1 beer"; //the app starts on one beer by default
+    
+    self.resultLabel.numberOfLines = 0; //no maximum number of lines for resultlabel
+    
+    //now we're going to clean up the UI's colors and fonts
+    
+    self.resultLabel.backgroundColor = [UIColor cyanColor];
+    //self.resultLabel.alpha = .1;
+    self.resultLabel.textColor = [UIColor redColor];
+    self.resultLabel.font = [UIFont fontWithName:@"Courier" size:20];
+    self.resultLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.calculateButton.backgroundColor = [UIColor blackColor];
+    
+    self.beerLabel.textAlignment = NSTextAlignmentCenter;
+    self.beerLabel.font = [UIFont fontWithName:@"Helvetica" size:10];
+    
+    self.beerPercentTextField.backgroundColor = [UIColor lightGrayColor];
+    self.beerPercentTextField.textAlignment = NSTextAlignmentCenter;
+    
+    
+    
+    
+    
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect viewRect = self.view.frame;
+    
+    //UI dimensions
+    CGFloat viewWidth = viewRect.size.width; //allows UI to resize properly
+    CGFloat viewHeight = viewRect.size.height;
+    CGFloat padding = 20;
+    CGFloat itemWidth = viewWidth - padding - padding;
+    CGFloat itemHeight = viewHeight / 12;
+    
+    self.beerPercentTextField.frame = CGRectMake(padding, padding, itemWidth, itemHeight); //0,0 is top left corner of the screen
+    
+    //place the rest of the subviews relative to the text field
+    CGFloat bottomOfTextField = CGRectGetMaxY(self.beerPercentTextField.frame);
+    self.beerCountSlider.frame = CGRectMake(padding, bottomOfTextField + padding, itemWidth, itemHeight);
+    
+    CGFloat bottomOfSlider = CGRectGetMaxY(self.beerCountSlider.frame);
+    self.beerLabel.frame = CGRectMake(padding, bottomOfSlider + padding, itemWidth, itemHeight);
+    
+    CGFloat bottomOfBeerLabel = CGRectGetMaxY(self.beerLabel.frame);
+    self.resultLabel.frame = CGRectMake(padding, bottomOfBeerLabel + padding, itemWidth, itemHeight * 2);
+    
+    CGFloat bottomOfLabel = CGRectGetMaxY(self.resultLabel.frame);
+    self.calculateButton.frame = CGRectMake(padding, bottomOfLabel + padding, itemWidth, itemHeight);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,7 +128,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)textFieldDidChange:(UITextField *)sender
+- (void)textFieldDidChange:(UITextField *)sender
 {
     NSString *enteredText = sender.text;
     float enteredValue = [enteredText floatValue];
@@ -40,7 +140,7 @@
 
 }
 
-- (IBAction)sliderValueDidChange:(UISlider *)sender
+- (void)sliderValueDidChange:(UISlider *)sender
 {
     NSLog(@"Slider value changed to %f", sender.value);
     
@@ -58,7 +158,7 @@
     
     NSString *resultText = [NSString stringWithFormat:@"%d %@", numberOfBeers, beerText];
     
-    self.beerNumberLabel.text = resultText;
+    self.beerLabel.text = resultText;
     
     
     //self.beerNumberLabel.text
@@ -66,7 +166,7 @@
 
 }
 
-- (IBAction)buttonPressed:(UIButton *)sender
+- (void)buttonPressed:(UIButton *)sender
 {
     [self.beerPercentTextField resignFirstResponder];
     
@@ -109,7 +209,7 @@
     self.resultLabel.text = resultText;
 
 }
-- (IBAction)tapGestureDidFire:(UITapGestureRecognizer *)sender
+- (void)tapGestureDidFire:(UITapGestureRecognizer *)sender
 {
     [self.beerPercentTextField resignFirstResponder];
 

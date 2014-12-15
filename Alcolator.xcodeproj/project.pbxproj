@@ -10,10 +10,10 @@
 		C6124BAA1A3A4CCE00A94107 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6124BA91A3A4CCE00A94107 /* main.m */; };
 		C6124BAD1A3A4CCE00A94107 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6124BAC1A3A4CCE00A94107 /* AppDelegate.m */; };
 		C6124BB01A3A4CCE00A94107 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6124BAF1A3A4CCE00A94107 /* ViewController.m */; };
-		C6124BB31A3A4CCE00A94107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6124BB11A3A4CCE00A94107 /* Main.storyboard */; };
 		C6124BB51A3A4CCE00A94107 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6124BB41A3A4CCE00A94107 /* Images.xcassets */; };
 		C6124BB81A3A4CCE00A94107 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6124BB61A3A4CCE00A94107 /* LaunchScreen.xib */; };
 		C6124BC41A3A4CCE00A94107 /* AlcolatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6124BC31A3A4CCE00A94107 /* AlcolatorTests.m */; };
+		C64D322C1A3E69E90096F52B /* WhiskeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C64D322B1A3E69E90096F52B /* WhiskeyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +34,13 @@
 		C6124BAC1A3A4CCE00A94107 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C6124BAE1A3A4CCE00A94107 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C6124BAF1A3A4CCE00A94107 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C6124BB21A3A4CCE00A94107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C6124BB41A3A4CCE00A94107 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C6124BB71A3A4CCE00A94107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C6124BBD1A3A4CCE00A94107 /* AlcolatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlcolatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6124BC21A3A4CCE00A94107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6124BC31A3A4CCE00A94107 /* AlcolatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlcolatorTests.m; sourceTree = "<group>"; };
+		C64D322A1A3E69E90096F52B /* WhiskeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhiskeyViewController.h; path = Alcolator/WhiskeyViewController.h; sourceTree = "<group>"; };
+		C64D322B1A3E69E90096F52B /* WhiskeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhiskeyViewController.m; path = Alcolator/WhiskeyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,8 @@
 		C6124B9B1A3A4CCD00A94107 = {
 			isa = PBXGroup;
 			children = (
+				C64D322A1A3E69E90096F52B /* WhiskeyViewController.h */,
+				C64D322B1A3E69E90096F52B /* WhiskeyViewController.m */,
 				C6124BA61A3A4CCE00A94107 /* Alcolator */,
 				C6124BC01A3A4CCE00A94107 /* AlcolatorTests */,
 				C6124BA51A3A4CCE00A94107 /* Products */,
@@ -85,7 +88,6 @@
 				C6124BAC1A3A4CCE00A94107 /* AppDelegate.m */,
 				C6124BAE1A3A4CCE00A94107 /* ViewController.h */,
 				C6124BAF1A3A4CCE00A94107 /* ViewController.m */,
-				C6124BB11A3A4CCE00A94107 /* Main.storyboard */,
 				C6124BB41A3A4CCE00A94107 /* Images.xcassets */,
 				C6124BB61A3A4CCE00A94107 /* LaunchScreen.xib */,
 				C6124BA71A3A4CCE00A94107 /* Supporting Files */,
@@ -199,7 +201,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6124BB31A3A4CCE00A94107 /* Main.storyboard in Resources */,
 				C6124BB81A3A4CCE00A94107 /* LaunchScreen.xib in Resources */,
 				C6124BB51A3A4CCE00A94107 /* Images.xcassets in Resources */,
 			);
@@ -220,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6124BB01A3A4CCE00A94107 /* ViewController.m in Sources */,
+				C64D322C1A3E69E90096F52B /* WhiskeyViewController.m in Sources */,
 				C6124BAD1A3A4CCE00A94107 /* AppDelegate.m in Sources */,
 				C6124BAA1A3A4CCE00A94107 /* main.m in Sources */,
 			);
@@ -244,14 +246,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C6124BB11A3A4CCE00A94107 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C6124BB21A3A4CCE00A94107 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C6124BB61A3A4CCE00A94107 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -346,6 +340,7 @@
 				INFOPLIST_FILE = Alcolator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -356,6 +351,7 @@
 				INFOPLIST_FILE = Alcolator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -412,6 +408,7 @@
 				C6124BC91A3A4CCE00A94107 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6124BCA1A3A4CCE00A94107 /* Build configuration list for PBXNativeTarget "AlcolatorTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +417,7 @@
 				C6124BCC1A3A4CCE00A94107 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
