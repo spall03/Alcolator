@@ -51,6 +51,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.view.backgroundColor = [UIColor darkGrayColor]; //sets background of main window to dark gray
+    self.title = NSLocalizedString(@"Wine", @"Wine");
 
     
     self.beerPercentTextField.delegate = self; //this instance of viewDidLoad is the text field's delegate, meaning it can respond to the text field's default behavior (text entry)
