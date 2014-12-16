@@ -9,9 +9,9 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "WhiskeyViewController.h"
-#import "MainMenuViewController.h"
+//#import "MainMenuViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
 
 @end
 
@@ -22,14 +22,30 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]]; //initialize a window on the phone screen for the app to run in
     
-    MainMenuViewController *mainMenuViewController = [[MainMenuViewController alloc] init]; //the app starts on the main menu screen
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainMenuViewController];
-    self.window.rootViewController = navigationController;
+//    MainMenuViewController *mainMenuViewController = [[MainMenuViewController alloc] init]; //the app starts on the main menu screen
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainMenuViewController];
+//    self.window.rootViewController = navigationController;
+    
+    ViewController *wineVC = [[ViewController alloc] init];
+    WhiskeyViewController *whiskeyVC = [[WhiskeyViewController alloc] init];
+    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+    tabBarVC.viewControllers = @[wineVC, whiskeyVC]; //put our two views into the tab bar
+    tabBarVC.delegate = self;
+    
+    self.window.rootViewController = tabBarVC;
     
     launchOptions: [self.window makeKeyAndVisible];
     
     
     return YES;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    
+    NSString *msg = [[NSString alloc]initWithFormat:@("New view controller selected: %@"), viewController.title];
+    NSLog(msg);
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

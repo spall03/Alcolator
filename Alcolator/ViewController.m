@@ -18,6 +18,17 @@
 
 @implementation ViewController
 
+- (instancetype) init {
+    self = [super init];
+    
+    if (self) {
+        self.title = NSLocalizedString(@"Wine", @"wine");
+        [self.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -18)];
+    }
+    
+    return self;
+}
+
 -(void)loadView
 {
     self.view = [[UIView alloc]init]; //this is the main view that everything else fits into
@@ -50,9 +61,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.view.backgroundColor = [UIColor darkGrayColor]; //sets background of main window to dark gray
-    self.title = NSLocalizedString(@"Wine", @"Wine");
-
+    self.view.backgroundColor = [UIColor colorWithRed:0.741 green:0.925 blue:0.714 alpha:1]; 
+    //self.title = NSLocalizedString(@"Wine", @"Wine");
+    
+    
     
     self.beerPercentTextField.delegate = self; //this instance of viewDidLoad is the text field's delegate, meaning it can respond to the text field's default behavior (text entry)
     self.beerPercentTextField.placeholder = NSLocalizedString(@"% Alcohol Content Per Beer", @"Beer Percent Placeholder Text"); //set default text for text field
@@ -165,6 +177,7 @@
     
     //self.beerNumberLabel.text
     [self.beerPercentTextField resignFirstResponder];
+    [self.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%d", (int) sender.value]]; //update badge in tab bar with number of beers
 
 }
 
