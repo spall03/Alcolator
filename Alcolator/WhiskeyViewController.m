@@ -49,6 +49,8 @@
     
     NSString *resultText = [NSString stringWithFormat:NSLocalizedString(@"%d %@ contains as much alcohol as %.1f %@ of whiskey.", nil), numberOfBeers, beerText, numberOfWhiskeyGlassesForEquivalentAlcoholAmount, whiskeyText];
     self.resultLabel.text = resultText;
+    
+    self.title = [NSString stringWithFormat:(@"Whiskey (%.1f %@)"), numberOfWhiskeyGlassesForEquivalentAlcoholAmount, whiskeyText];
 }
 
 - (void) viewDidLoad {

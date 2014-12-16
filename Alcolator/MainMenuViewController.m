@@ -34,6 +34,8 @@
     [self.view addSubview:self.wineButton]; //add buttons to main view
     [self.view addSubview:self.whiskeyButton];
     
+    
+    
 }
 
 - (void)viewDidLoad {
