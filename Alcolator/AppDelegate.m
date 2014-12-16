@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "WhiskeyViewController.h"
+#import "MainMenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +22,11 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]]; //initialize a window on the phone screen for the app to run in
     
-    ViewController *viewController = [[ViewController alloc]init]; //instantiate our custom view controller
-    self.window.rootViewController = viewController; //custom view controller becomes the root view controller for the app
-    [self.window makeKeyAndVisible]; //bring the new window front and center
+    MainMenuViewController *mainMenuViewController = [[MainMenuViewController alloc] init]; //the app starts on the main menu screen
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainMenuViewController];
+    self.window.rootViewController = navigationController;
+    
+    launchOptions: [self.window makeKeyAndVisible];
     
     
     return YES;

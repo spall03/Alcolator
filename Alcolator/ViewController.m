@@ -51,6 +51,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.view.backgroundColor = [UIColor darkGrayColor]; //sets background of main window to dark gray
+    self.title = NSLocalizedString(@"Wine", @"Wine");
 
     
     self.beerPercentTextField.delegate = self; //this instance of viewDidLoad is the text field's delegate, meaning it can respond to the text field's default behavior (text entry)
@@ -101,11 +102,12 @@
     //UI dimensions
     CGFloat viewWidth = viewRect.size.width; //allows UI to resize properly
     CGFloat viewHeight = viewRect.size.height;
+    CGFloat topOffset = 60;
     CGFloat padding = 20;
     CGFloat itemWidth = viewWidth - padding - padding;
     CGFloat itemHeight = viewHeight / 12;
     
-    self.beerPercentTextField.frame = CGRectMake(padding, padding, itemWidth, itemHeight); //0,0 is top left corner of the screen
+    self.beerPercentTextField.frame = CGRectMake(padding, topOffset, itemWidth, itemHeight); //0,0 is top left corner of the screen
     
     //place the rest of the subviews relative to the text field
     CGFloat bottomOfTextField = CGRectGetMaxY(self.beerPercentTextField.frame);
@@ -187,11 +189,11 @@
     
     if (numberOfBeers == 1)
     {
-        beerText = NSLocalizedString(@"beer", @"singular beer");
+        beerText = NSLocalizedString(@"beer contains", @"singular beer");
     }
     else
     {
-        beerText = NSLocalizedString(@"beers", @"plural of beer");
+        beerText = NSLocalizedString(@"beers contain", @"plural of beer");
     }
     
     NSString *wineText;
@@ -205,8 +207,12 @@
         wineText = NSLocalizedString(@"glasses", @"plural of glass");
     }
     
-    NSString *resultText = [NSString stringWithFormat:NSLocalizedString(@"%d %@ contains as much alcohol as %.1f %@ of wine.", nil), numberOfBeers, beerText, numberOfWineGlassesForEquivalentAlcoholAmount, wineText];
+    
+    NSString *resultText = [NSString stringWithFormat:NSLocalizedString(@"%d %@ as much alcohol as %.1f %@ of wine.", nil), numberOfBeers, beerText, numberOfWineGlassesForEquivalentAlcoholAmount, wineText];
     self.resultLabel.text = resultText;
+    
+    
+    self.title = [NSString stringWithFormat:(@"Wine (%.1f %@)"), numberOfWineGlassesForEquivalentAlcoholAmount, wineText];
 
 }
 - (void)tapGestureDidFire:(UITapGestureRecognizer *)sender
